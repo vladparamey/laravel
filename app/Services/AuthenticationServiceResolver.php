@@ -24,10 +24,8 @@ class AuthenticationServiceResolver
     {
         $uri = $this->request->getRequestUri();
 
-        if (strpos($uri, 'admin')) {
-            return app(AdminAuthService::class);
-        }
-
-        return app(UserAuthService::class);
+        return strpos($uri, 'admin')
+            ? app(AdminAuthService::class)
+            : app(UserAuthService::class);
     }
 }
